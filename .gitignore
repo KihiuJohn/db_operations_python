@@ -1,0 +1,17 @@
+# Ignore everything
+*
+
+# Allow .gitignore file
+!.gitignore
+
+# Allow .py files
+!*.py
+
+# Ignore zip files
+*.zip
+
+# Ignore the /source_images folder
+/source_images/
+
+# Ignore .sql files
+*.sql
