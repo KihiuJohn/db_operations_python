@@ -2,7 +2,7 @@ import os
 from sqlalchemy import create_engine, Table, MetaData, select, update
 
 # Database connection details
-db_name = "archstone_test_db"
+db_name = "archstone_db"
 username = "root"
 password = ""
 

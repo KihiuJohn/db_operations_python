@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, MetaData, Table
 from sqlalchemy.sql import select, update
 
 # Database Configuration
-db_name = 'archstone_clone_db'
+db_name = 'archstone_db'
 username = 'root'
 password = ''  # No password
 db_host = 'localhost'
