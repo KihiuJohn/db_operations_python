@@ -2,12 +2,16 @@ import xml.etree.ElementTree as ET
 from datetime import datetime
 import csv
 
+# Correct namespace declaration
+SITEMAP_NAMESPACE = "http://www.sitemaps.org/schemas/sitemap/0.9"
+ET.register_namespace("", SITEMAP_NAMESPACE)
+
 # Function to load existing sitemap URLs and images
 def load_sitemap(file_path):
     try:
         tree = ET.parse(file_path)
         root = tree.getroot()
-        namespace = {'ns': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+        namespace = {'ns': SITEMAP_NAMESPACE}
         
         if not root.tag.endswith('urlset'):
             print("Error: Incorrect namespace in sitemap. Ensure proper declaration.")
@@ -40,15 +44,15 @@ def load_crawled_urls(file_path):
 def update_sitemap(sitemap_root, namespace, existing_urls, new_urls, output_file):
     for new_url in new_urls:
         if new_url not in existing_urls:
-            url_element = ET.SubElement(sitemap_root, 'url')
+            url_element = ET.SubElement(sitemap_root, f'{{{SITEMAP_NAMESPACE}}}url')
 
-            loc_element = ET.SubElement(url_element, 'loc')
+            loc_element = ET.SubElement(url_element, f'{{{SITEMAP_NAMESPACE}}}loc')
             loc_element.text = new_url
 
-            lastmod_element = ET.SubElement(url_element, 'lastmod')
+            lastmod_element = ET.SubElement(url_element, f'{{{SITEMAP_NAMESPACE}}}lastmod')
             lastmod_element.text = datetime.now().strftime('%Y-%m-%d')
 
-            priority_element = ET.SubElement(url_element, 'priority')
+            priority_element = ET.SubElement(url_element, f'{{{SITEMAP_NAMESPACE}}}priority')
             priority_element.text = '0.7'
 
     try:
